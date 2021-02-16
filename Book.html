@@ -1,0 +1,328 @@
+<html>
+<head>
+<title>BOOK RECORD MANAGEMENT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<input type="button" id="logout" style="border:1px solid blue; background-color:pink; width:70px; margin-left:1265px" value="LOGOUT"></button>
+<br>
+<br>
+<div id="header" style="width:100%; height:70px; border:1px solid red; background-color:#F0F8FF">
+<center>
+<h1>Book Record Management</h1>
+</center>
+</div>
+<br>
+<br>
+<div id="main" style="width:100%; height:100px; border:1px solid blue;background-color:lightyellow">
+<table>
+<br>
+<br>
+<tr>
+<td><input type="button" id="btn1" style="width:100px;height:30px;margin-left:75px;background-color:lightcyan; border:1px solid blue" value="Add New Book"></button></td>
+<td><input type="button" id="btn4" style="width:100px;height:30px;margin-left:120px;background-color:lightcyan; border:1px solid blue" value="Update"></button></td>
+<td><input type="button" id="btn2" style="width:100px;height:30px;margin-left:180px;background-color:lightcyan; border:1px solid blue" value="Search Book"></button></td>
+<td><input type="button" id="btn5" style="width:100px;height:30px;margin-left:200px;background-color:lightcyan; border:1px solid blue" value="Delete"></button></td>
+<td><input type="button" id="btn3" style="width:100px;height:30px;margin-left:210px;background-color:lightcyan; border:1px solid blue" value="View All Book" onclick="fun()"></button></td>
+</tr>
+</table>
+</div>
+<div id="ash1">
+<input type="input" id="input1" style="border:1px solid cyan;height:25px;width:250px;margin-left:20px;border-radius:10px;margin-top:60px; padding-left:7px; font-weight:bold;opacity:0" placeholder="TITLE"></input>
+
+<input type="input" id="input2" style="border:1px solid cyan;height:25px;width:250px;border-radius:10px;margin-left:20px;margin-top:60px; padding-left:7px;font-weight:bold;opacity:0" placeholder="AUTHOR"></input>
+
+<input type="input" id="input3" style="border:1px solid cyan;height:25px;width:250px;border-radius:10px;margin-left:20px;margin-top:20px; padding-left:7px;font-weight:bold;opacity:0" placeholder="PRICE"></input>
+
+<input type="input" id="input4" style="border:1px solid cyan;height:25px;width:250px;border-radius:10px;margin-left:20px;margin-top:80px; padding-left:7px;font-weight:bold;opacity:0" placeholder="PUBLISHER"></input>
+
+<input type="button" id="btn_save" style="border:1px solid cyan;height:25px;width:100px;margin-left:240px;margin-top:30px;opacity:0" value="Save"></button>
+</div>
+<div id="outerupdate">
+<input type="text" id="title_update" style="border: 1px solid cyan;height:30px;width:250px;margin-left:120px; margin-top:40px; padding-left:7px; font-weight:bold; opacity:0" placeholder="TITLE"></input>
+<input type="submit" id="update_btn" style="height:30px;border-color:cyan;opacity:0"></input>
+<div id="update">
+<input type="input" id="update1" style="border:1px solid cyan;height:25px;width:250px;margin-left:20px;margin-top:60px; padding-left:7px; font-weight:bold;opacity:0"></input>
+
+<input type="input" id="update2" style="border:1px solid cyan;height:25px;width:250px;margin-left:310px;margin-top:-20px; padding-left:7px;font-weight:bold;opacity:0"></input>
+
+<input type="input" id="update3" style="border:1px solid cyan;height:25px;width:250px;margin-left:20px;margin-top:30px; padding-left:7px;font-weight:bold;opacity:0"></input>
+
+<input type="input" id="update4" style="border:1px solid cyan;height:25px;width:250px;margin-left:40px;margin-top:30px; padding-left:7px;font-weight:bold;opacity:0"></input>
+
+<input type="button" id="btn_save_update" style="border:1px solid cyan;height:25px;width:100px;margin-left:240px;margin-top:30px;opacity:0" value="Save"></button>
+</div>
+</div>
+<center>
+<div id="ash2">
+<center>
+<input type="text" id="search" style="border:1px solid cyan; height:25px; width:250px; margin-top:20px; border-radius:10px; padding-left:7px; font-weight:bold; opacity:0" placeholder="TITLE"></input>
+<input type="button" id="btn_search" style="border:1px solid cyan;height:25px;width:100px;margin-top:10px;opacity:0" value="Search"></button>
+</center>
+<br><br>
+<table id="tab" style="border:1px solid green; opacity:0;padding-left:5px">
+<thead>
+<th id="th1" style="width:200px;background-color:lightcyan;opacity:0">TITLE</th>
+<th id="th2" style="width:200px;background-color:lightcyan;opacity:0">PRICE</th>
+<th id="th3" style="width:200px;background-color:lightcyan;opacity:0">AUTHOR</th>
+<th id="th4" style="width:200px;background-color:lightcyan;opacity:0">PUBLISHER</th>
+</thead>
+<tr>
+<center>
+<td id="td1" style="padding-left:20px"></td>
+<td id="td2" style="padding-left:20px"></td>
+<td id="td3" style="padding-left:20px"></td>
+<td id="td4" style="padding-left:40px"></td>
+</center>
+</tr>
+
+</table>
+</div>
+<div id="delete">
+<input type="input" id="delete1" style="border:1px solid cyan;height:25px;width:250px;margin-left:20px;margin-top:60px; padding-left:7px; font-weight:bold;opacity:0" placeholder="ENTER TITLE"></input>
+<br><br>
+<input type="submit" id="submit_delete" style="opacity:0"></input>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyBI-ojrYKffUhTgZ8tLgzm5QDoCLC6jrRY",
+    authDomain: "book-298cb.firebaseapp.com",
+    databaseURL: "https://book-298cb.firebaseio.com",
+    projectId: "book-298cb",
+    storageBucket: "book-298cb.appspot.com",
+    messagingSenderId: "624835994360",
+    appId: "1:624835994360:web:5104bd9e0585686984510d"
+  };
+  firebase.initializeApp(firebaseConfig);
+  
+$(document).ready(function(){
+    $("#btn1").click(function(){
+	$("#ash1").width(600);
+	 $("#ash1").height(340);
+	 $("#ash1").css('border','1px solid blue');
+	 $("#ash1").css('border-radius','10px');
+	 $("#ash1").css('margin-left','350px');
+	 $("#ash1").css('margin-top','100px');
+	 $("#ash1").css('background-color','lihtYellow');
+	 $("#input1").css("opacity",1);
+	 $("#input2").css("opacity",1);
+	 $("#input3").css("opacity",1);
+	 $("#input4").css("opacity",1);
+	
+	 $("#btn_save").css("opacity",1);
+	 $("#ash1").toggle();
+	 
+	});
+	});
+	
+	$(document).ready(function(){
+    $("#btn2").click(function(){
+	$("#ash2").width(500);
+	 $("#ash2").height(200);
+	 $("#ash2").css('border','1px solid blue');
+	 $("#ash2").css('border-radius','10px');
+	 $("#ash2").css('margin-top','-30px');
+	 $("#ash2").css('background-color','lihtYellow');
+	 $("#search").css("opacity",1); 
+	 $("#btn_search").css("opacity",1);
+	 $("#tab").css("opacity",1); 
+	 $("#th1").css("opacity",1); 
+	 $("#th2").css("opacity",1); 
+	 $("#th3").css("opacity",1); 
+	 $("#th4").css("opacity",1); 
+	 $("#ash2").toggle();
+	 
+	});
+	});
+
+$(document).ready(function(){
+    $("#btn3").click(function(){
+	$("#ash3").width(1300);
+	 $("#ash3").height(450);
+	 $("#ash3").css('border','1px solid blue');
+	 $("#ash3").css('border-radius','10px');
+	 $("#ash3").css('margin-top','-110px');
+	 $("#ash3").css('margin-left','20px');
+	 $("#ash3").css('background-color','lihtYellow');
+	 $("#ash3").toggle();
+	 
+	 
+	});
+	});
+$(document).ready(function(){
+$("#logout").click(function(){
+     location.href="Form validation.html";
+});
+});	
+	$(document).ready(function(){
+    $("#btn4").click(function(){
+	$("#outerupdate").width(700);
+	 $("#outerupdate").height(400);
+	 $("#outerupdate").css('border','1px solid blue');
+	 $("#outerupdate").css('border-radius','10px');
+	 $("#outerupdate").css('margin-top','-70px');
+	 $("#outerupdate").css('margin-left','300px');
+	 $("#title_update").css("opacity",1); 
+	 $("#update_btn").css("opacity",1); 
+	 $("#outerupdate").css('background-color','lihtYellow');
+	 $("#outerupdate").toggle();
+	 
+	 
+	 
+	});
+	});
+	var d=0;
+	
+	var array_title=new Array();
+	
+$(document).ready(function(){
+$("#update_btn").click(function(){
+	var _title,_author,_price,_publisher;
+	
+	var r=0;
+	var value1;
+	 firebase.database().ref('BOOK').once('value',function(snapshot){
+	 
+	   snapshot.forEach(
+	   function(ChildSnapshot)
+	   {
+	   _title=String(ChildSnapshot.val().Title);
+	   array_title.push(_title);
+
+	   }
+	);
+   });
+	 if(value1!="")
+	 {  value1=String(document.getElementById("title_update").value);
+	   for(var i=0; i<array_title.length; i++)
+	   {
+	   if(array_title[i]==value1)
+	     r++;
+	   }
+	   if(r>=0)
+	   {
+	 $("#update").width(600);
+	 $("#update").height(250);
+	 $("#update").css('border','1px solid blue');
+	 $("#update").css('border-radius','10px');
+	 $("#update").css('margin-top','30px');
+	 $("#update").css('margin-left','60px');
+	 $("#update1").css("opacity",1); 
+	 $("#update2").css("opacity",1); 
+	 $("#update3").css("opacity",1); 
+	 $("#update4").css("opacity",1); 
+	 $("#update1").css("padding-left",'15px'); 
+	 $("#update2").css("padding-left",'15px'); 
+	 $("#update3").css("padding-left",'15px'); 
+	 $("#update4").css("padding-left",'15px'); 
+	 $("#btn_save_update").css("opacity",1); 
+	 $("btn_save_update").css('margin-top','30px');
+	 $("btn_save_update").css('margin-left','80px');
+	 firebase.database().ref('BOOK/'+value1).on('value',function(snapshot){
+   document.getElementById("update1").value=String(snapshot.val().Title);
+   document.getElementById("update2").value=String(snapshot.val().Price);
+   document.getElementById("update3").value=String(snapshot.val().Author);
+   document.getElementById("update4").value=String(snapshot.val().Publisher);
+  
+    });
+	 }
+	 else{
+	 alert("NO RECORD OF TITLE:"+value1);
+	 }
+	 }
+	 else{
+	 alert("PLEASE ENTER THE TITLE");
+	 }
+
+	});
+	});
+
+	
+$(document).ready(function(){
+$("#btn5").click(function(){
+
+     $("#delete").width(500);
+	 $("#delete").height(200);
+	 $("#delete").css('border','1px solid blue');
+	 $("#delete").css('border-radius','10px');
+	 $("#delete").css('margin-left','10px');
+	 $("#delete1").css("opacity",1); 
+	 $("#submit_delete").css("opacity",1); 
+	 $("#submit_delete").css('border','1px solid blue');
+	 $("#delete").css('margin-top','-350px');
+	 $("#delete").css('background-color','lihtYellow');
+	
+ 
+ });
+ });
+ $(document).ready(function(){
+$("#submit_delete").click(function(){
+
+var delete1=document.getElementById("delete1").value;
+  firebase.database().ref('BOOK/'+delete1).remove();
+  alert("RECORD DELETED SUCCESSFULLY");
+});
+});
+$(document).ready(function(){
+ $("#btn_save_update").click(function(){
+   
+  var title_value=document.getElementById("update1").value;
+  firebase.database().ref('BOOK/'+title_value).set({
+   Title:document.getElementById("update1").value,
+   Price:document.getElementById("update2").value,
+   Author:document.getElementById("update3").value,
+   Publisher:document.getElementById("update4").value,
+  });
+   alert("RECORD EDITED SUCCESSFULLY");
+});
+});	
+	
+//-------------------------------------------------------------SAVE VALUE IN FIREBASE-------------------------------------------------	
+$(document).ready(function(){
+    $("#btn_save").click(function(){
+	
+	var tit=document.getElementById("input1").value;
+	var auth=document.getElementById("input2").value;
+	var pri=document.getElementById("input3").value;
+	var publish=document.getElementById("input4").value;
+	if(tit!="" && pri!="" && auth!="" && publish!="")
+	{firebase.database().ref('BOOK/'+tit).set({
+   Title:tit,
+   Price:pri,
+   Author:auth,
+   Publisher:publish,
+  });
+    alert("RECORD STORED SUCCESSFULLY");
+	}
+	});
+	});
+//-------------------------------------------------------------------SEARCH VALUE FROM FIREBASE------------------------------------------
+	$(document).ready(function(){
+    $("#btn_search").click(function(){
+	var sr=document.getElementById("search").value;
+	var string = sr.toUpperCase(); 
+	firebase.database().ref('BOOK/'+string).on('value',function(snapshot){
+   document.getElementById("td1").innerHTML=snapshot.val().Title;
+   document.getElementById("td2").innerHTML=snapshot.val().Price;
+   document.getElementById("td3").innerHTML=snapshot.val().Author;
+   document.getElementById("td4").innerHTML=snapshot.val().Publisher;
+    });
+  
+	});
+	});
+function fun()
+{
+ location.href="display.html";
+
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<html>
+<head>
+</head>
+<body style="background-color:#F0F8FF">
+
+<center>
+<h2>LOGIN WINDOW</h2>
+</center>
+<input type="button"  id="login"  style="height:30px;margin-left:1300px;margin-top:-50px; border:1px solid red" value="Login" onclick="f1()"></button>
+<div id="d1" style="width:600px; height:400px; background-color:lightcyan; border:2px solid blue;border-radius:10px;margin-left:380px;margin-top:50px">
+<input type="text" id="ac" style="width:300px; height:30px; border-radius:20px; border-color:cyan; margin-left:120px; margin-top:80px;padding:3px" placeholder="UserName"></input>
+<div id="d2" type="text" style="width:300px;height:30px;background-color:lightcyan;margin-left:120px;margin-top:10px"></div>
+<input type="text" id="ab" style="width:300px; height:30px; border-radius:20px; border-color:cyan; margin-left:120px; margin-top:80px;padding:3px" placeholder="Password"></input>
+<div id="d3" type="text" style="width:300px;height:30px;background-color:lightcyan;margin-left:120px;margin-top:15px"></div>
+<br>
+<input type="button" name="btn" style="height:30px;margin-left:250px;background-color:pink; border:1px solid blue; margin-top:-20px" value="Register" onclick="fun(ac.value,ab.value)">
+</div>
+<div id="log">
+<center>
+<h4 id="login_text" style="opacity:0">Login Window</h4>
+</center>
+<input type="text" id="login1" style="height:30px;border-radius:1px solid green;margin-left:50px;padding-left:10px;opacity:0" placeholder="UserName"></input>
+<br>
+<input type="text" id="login2" style="height:30px;border-radius:1px solid green;margin-left:50px;padding-left:10px;opacity:0" placeholder="Password"></input>
+<input type="button" id="login3" style="height:30px;width:70px; background-color:pink; border-radius:1px solid green; margin-left:120px;opacity:0" value="Login"></input>
+</div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+
+   
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyBI-ojrYKffUhTgZ8tLgzm5QDoCLC6jrRY",
+    authDomain: "book-298cb.firebaseapp.com",
+    databaseURL: "https://book-298cb.firebaseio.com",
+    projectId: "book-298cb",
+    storageBucket: "book-298cb.appspot.com",
+    messagingSenderId: "624835994360",
+    appId: "1:624835994360:web:5104bd9e0585686984510d"
+  };
+  firebase.initializeApp(firebaseConfig);
+$(document).ready(function(){
+$("#ac").keypress(function(){
+document.getElementById("d2").innerHTML=""
+$('#ac').css('borderColor','cyan')
+
+})
+});
+
+$(document).ready(function(){
+$("#ab").keypress(function(){
+document.getElementById("d3").innerHTML=""
+$('#ab').css('borderColor','cyan')
+})
+});
+
+
+//-------------------Email validation---------------//
+$(document).ready(function(){
+$("#ac").mouseout(function(){
+var a1=document.getElementById("ac").value;
+var s =a1.includes("@");
+if(a1.length!=0 && s!=true)
+document.getElementById("d2").innerHTML="UserName must contains @"
+})
+});
+$(document).ready(function(){
+$("#ac").mouseover(function(){
+var a1=document.getElementById("ac").value;
+if(a1.length!=0)
+document.getElementById("d2").innerHTML=""
+})
+});
+
+//------------- password validation-------------//
+$(document).ready(function(){
+$("#ab").mouseout(function(){
+var a2=document.getElementById("ab").value;
+var d=0;
+for(var i=0; i<a2.length;i++)
+{
+ if(a2[i]==1 || a2[i]==2 || a2[i]==3 || a2[i]==4 || a2[i]==5 ||
+ a2[i]==6 || a2[i]==7 || a2[i]==8 || a2[i]==9)
+   d++
+   }
+if(a2.length!=0 && d!=4)
+document.getElementById("d3").innerHTML="Password  must contains 4 digits"
+})
+});
+$(document).ready(function(){
+$("#ab").mouseover(function(){
+var a1=document.getElementById("ab").value;
+if(a1.length!=0)
+document.getElementById("d3").innerHTML=""
+})
+});
+//---------------------------------------------------//
+function fun(n1,n2)
+{ 
+  if(n1=="" && n2=="")
+  { 
+  $('#ac').css('borderColor','red')
+  $('#ab').css('borderColor','red')
+  document.getElementById("d2").innerHTML="UserName is required"
+ document.getElementById("d3").innerHTML="Password is required"
+  }
+  else if(n1=="")
+ document.getElementById("d2").innerHTML="UserName is required"
+ 
+ else if(n2=="")
+ document.getElementById("d3").innerHTML="Password is required"
+ else{
+ 
+ firebase.database().ref('REGISTER/'+n1).set({
+   USERNAME:n1,
+   PASSWORD:n2,
+  });
+ alert("REGISTRATION SUCCESSFULL");
+ }
+}
+function f1()
+{
+     $("#log").width(300);
+	 $("#log").height(300);
+	 $("#log").css('border','1px solid blue');
+	 $("#log").css('border-radius','10px');
+	 $("#log").css('margin-top','-400px');
+	 $("#log").css('margin-left','1000px');
+	 $("#login1").css("opacity",1); 
+	 $("#login2").css("opacity",1); 
+	 $("#login3").css('margin-top','20px');
+	 $("#login3").css("opacity",1); 
+	  $("#login_text").css("opacity",1); 
+	 $("#login1").css('margin-top','20px');
+	 $("#login2").css('margin-top','40px');
+	 $("#log").css('background-color','whitie');
+}
+$(document).ready(function(){
+$("#login3").click(function(){
+  var user_name=String(document.getElementById("login1").value);
+  var pass_word=String(document.getElementById("login2").value);
+  var r=0;
+ firebase.database().ref('REGISTER').once('value',function(snapshot){
+	 
+	   snapshot.forEach(
+	   function(ChildSnapshot)
+	   {
+	   var d1=String(ChildSnapshot.val().USERNAME);
+	   var d2=String(ChildSnapshot.val().PASSWORD);
+	   if(d1==user_name && d2==pass_word)
+	    location.href="Book.html";
+       else
+	   r++;
+	   }
+	);
+   });
+   if(r>0)
+   alert("WRONG USERNAME AND PASSWORD COMBINATION");
+});
+});
+
+</script>
+</body>
+</html>

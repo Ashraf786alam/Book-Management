@@ -1,0 +1,15 @@
+table,td{
+
+border:2px solid black;
+padding-left:60px;
+padding-top:10px;
+
+}
+table th{
+	
+	padding-left:30px;
+	padding-top:10px;
+}
+td{
+	background-color:#F0F8FF;
+}
